@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TEST</title>
+        <script type="text/javascript">
+
+
+            function sendToPage(){
+                var input = document.getElementById("search").value;
+                 //alert(input);
+                if (input == "happy"){
+                    location.href = "suggestion_happy.html";
+                    return false;
+                }
+                else if (input == "sad"){
+                    location.href = "suggestion_sad.html";
+                    return false;
+                }
+                else {
+                    alert('Invalid Input.');
+                }
+                    }
+        </script>
+    </head>
+    <body>
+        <div>
+                <input type="text" method="put" id="search" placeholder="Search" value="">
+                <input type='submit' onclick="sendToPage();" />
+        </div>
+    </body>
+</html>
