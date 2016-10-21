@@ -1,16 +1,57 @@
 <!doctype html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href=style.css>
+	<!-- bsjsCore Files. You must include them in this order so as to use any BigSemantics porject -->
+	<!-- Readyable is a class used to handle the asynchronous load time of the BS project
+		BSAutoSwitch is an interface to BigSemantics that can switch between using the lab's hosted service for metadata
+			and using a browser-installed extension. BSService and BSSExtension are implementations -->
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/Readyable.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/BSAutoSwitch.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/BSService.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/BSExtension.js"></script>
+	<!-- BSUtils, Downloader, ParsedURL, and simplBase are helper classes. Include them, but don't really worry about them-->
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/BSUtils.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/ParsedURL.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/Downloader.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/simpl/simplBase.js"></script>
+	<!-- MetadataTask is the preffered interface for using BSJS when you only want data and not to render it via our software
+		RepoMan loads a Meta-metadata repository. Avoid doing anything with it directly; it's messy-->
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/MetadataTask.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/RepoMan.js"></script>
+	<!-- Various helped classes for renderers. MetadataViewModel takes our raw data and puts it in a nice format for the
+		 various metadata renderers (of which only one is shown here). InterfaceStyle is a dictionary that lets us style
+		 elements differently in different renderers. -->
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/MetadataViewModel.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/interfaceStyle.js"></script>
+	<!-- The RenderingFiles!! RendererBase is your entry point for rendering via our software. RenderingTask handles some various data processing and can, on a good day, select an ideal renderer for metadata if one isn't specified. Vanilla Mice, mice, baby does *most* of the rendering work. The initial plan was for VanillaMICE to extend RendererBase, but in practice they've began to diverge.
+	Bootstrap.min.css is a neccesary evil - there's some particular bit of css in there that lets MICE render properly. I'm trying to hunt it
+	down so that bootstrap is not a dependency, but I haven't succeeded yet
+	-->
+
+	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/RendererBase.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/RenderingTask.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/VanillaMICE.js"></script>
+
+    <link href="../BigSemanticsJavaScript/renderers/styles/metadataRenderer.css" rel="stylesheet" type="text/css">
+
+	<!--Webpage-specific javascript and CSS includes-->
+<!-- 	<script type="text/javascript" src="./data.js"></script>
+    <link href="./demo.css" rel="stylesheet" type="text/css">
+ -->    <!-- I like the roboto font because it makes me feel like a real developer-->
+	<!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500,400italic,500italic,300italic,300,100italic,100' rel='stylesheet' type='text/css'> -->
+
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="http://www.yvoschaap.com/ytpage/ytembed.js"></script>
+    <script type="text/javascript" src="javastuff.js"></script>
 <style>
 </style>
 </head>
 <header id="banner" class="body">
-	<img src="logo.png" alt="TSSE" width="140" height="50">
+	<img src="HCC logo-09.png" alt="TSSE" width="177" height="115">
 	<nav>
 		<ul>
-			<li><a href="signup.html">Sign In/Up</a></li>
-			<li><a href="cart.html">Cart</a></li>
+			<li><a href="cart.html"><img src="HCC cart-09.png" title="Cart" width="88.5" height="57.5"></a></li>
 		</ul>
 		<form id="searchbox" action="">
 			<input id="search" type="text" placeholder="Type here">
@@ -21,9 +62,10 @@
 <aside id="featured" class="body"><article>
 		<div id="slider">
 			<figure>
-				<img src="i7.jpg" alt>
-				<img src="gtx.jpg" alt>
-				<img src="radeon.jpg" alt>
+				<img src="HCC slider1-10.jpg" alt>
+				<img src="HCC slide2-10.jpg" alt>
+				<img src="HCC slider1-10.jpg" alt>
+				<img src="HCC slide2-10.jpg" alt>
 			</figure>
 		</div>
 </article></aside>

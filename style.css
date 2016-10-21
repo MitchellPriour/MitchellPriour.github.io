@@ -11,7 +11,7 @@ ol {
 	display: inline;
 }
 div#slider{
-	width: 10%;
+	width: 100%;
 	max-width: 1920px;
 	margin: auto;
 	margin-top: 50px;
@@ -40,7 +40,7 @@ div#slider figure img {
 	70% { left: -200%; } 
 	75% { left: -300%; }
 	95% { left: -300%; }
-	100% { left: -400%; } 
+	100% { left: -400%; }
 }
 
 #searchbox {
@@ -104,6 +104,11 @@ div#slider figure img {
 
 #submit::-moz-focus-inner {
        border: 0;  /* Small centering fix for Firefox */
+}
+#content {
+	min-height: 400px;
+   	margin-bottom: 100px;
+   	clear: both;
 }
 div.graphic-content {
 	float: left;
