@@ -41,6 +41,7 @@
 	<!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500,400italic,500italic,300italic,300,100italic,100' rel='stylesheet' type='text/css'> -->
 
     <link rel="stylesheet" type="text/css" href="style.css"></link>
+    <link rel="stylesheet" type="text/css" href="functionalPrototype.css"></link>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <script type="text/javascript" src="http://www.yvoschaap.com/ytpage/ytembed.js"></script>
     <script type="text/javascript" src="javastuff.js"></script>
@@ -69,44 +70,66 @@
 			</figure>
 		</div>
 </article></aside>
-<section id="content" class="body">
-	<ol id="categories" class="hfeed">
-		<li><article class="graphic-cards">
-			<header>
-				<h2 class="graphic-title"><a href="#" rel="bookmark" title="Permalink to them Graphic cards">Graphics Cards</a></h2>
-			</header>
-			<div class="graphic-content">
-				<ul>
-					<li><a href="https://www.amazon.com/EVGA-GeForce-Dual-Link-Graphics-06G-P4-2790-KR/dp/B00BIUKH04" rel="external">Look at this sweet GTX TITAN</a></li>
-					<li><a href="http://www.newegg.com/Product/Product.aspx?Item=N82E16814202224" rel="external">This card is pretty cool</a></li>
-					<li><a href="http://www.newegg.com/Product/Product.aspx?Item=N82E16814137040" rel="external">This one's not a Titan</a></li>
-				</ul>
+<section id="content" class="body"><div id = "main" class="main">
+		<div id = "search-results-container" class="search-results-container">
+			<div id="products-container" oncontextmenu="return false;" class="w3-row products-container">
+				
 			</div>
-		</article></li>
-		<li><article class="ram">
-			<header>
-				<h2 class="ram-title"><a href="#" rel="bookmark" title="Permalink to them RAMS">RAM</a></h2>
-			</header>
-			<div class="ram-content">
-				<ul>
-					<li><a href="http://www.newegg.com/Product/Product.aspx?Item=N82E16820104531" rel="external">4 Times Better than DDR1</a></li>
-					<li><a href="http://www.newegg.com/Product/Product.aspx?Item=N82E16820233982" rel="external">Dance Dance Desktop Memory</a></li>
-					<li><a href="http://www.newegg.com/Product/Product.aspx?Item=9SIA5752RR9050" rel="external">These sticks are BALLISTIX, GET IT?</a></li>
-				</ul>
+		</div>
+		<div id="modalWindow" class="w3-modal w3-padding">
+			<div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width:1050px">
+				<header class="w3-white w3-padding modal-header">
+                    <div class="w3-padding" style="float:center">
+                        <h2 class="w3-half" style="text:left">
+                            <img id="modalImage"/>
+                        </h2>
+                        <div class:"w3-half" style="float:left;text-align:left">
+                            <h2 id="modalProductName"></h2>
+                            <div>
+                                <div style="float:left">
+                                    <h4 id="modalPrice"></h4>
+                                    <div class="w3-xlarge" style="float:left;color:rgb(255, 153, 0)">
+                                        <i id="modalStar1"></i>
+                                        <i id="modalStar2"></i>
+                                        <i id="modalStar3"></i>
+                                        <i id="modalStar4"></i>
+                                        <i id="modalStar5"></i>
+                                    </div>
+                                </div>
+								<div class="w3-jumbo">
+									<i id="modalFavorite" style="float:right;color:red;"></i>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+				</header>
+				<div id="specsContent" class="w3-container tab-content modal-specs-tab-content">
+					<div class="w3-container" style="text-align:left;max-height:350px;overflow:auto">
+						<table id="modalSecificationsTable" class="w3-table w3-margin">
+
+						</table>
+					</div>
+				</div>
+                
+				<div id="reviewsContent" class="w3-container tab-content modal-reviews-tab-content" style="text-align:left;max-height:350px;overflow:auto">
+				
+                </div>
+
+				<div id="videosContent" class="w3-container tab-content modal-videos-tab-content">
+					<div id="modalVideosContainer" class="w3-container" style="max-height:350px;overflow:auto">
+                        <div id="ytThumbs"></div>
+					</div>
+				</div>
+				
+				<div id="favoritesContent" class="w3-container tab-content modal-favorites-tab-content">
+					<div class="w3-container" style="text-align:left;max-height:350px;overflow:auto">
+						<table id="modalFavoritesTable" class="w3-table w3-margin">
+						</table>
+					</div>
+				</div>
 			</div>
-		</article></li>
-		<li><article class="processors">
-			<header>
-				<h2 class="processors-title"><a href="#" rel="bookmark" title="Permalink to them Processors">Processors</a></h2>
-			</header>
-			<div class="processors-content">
-				<ul>
-					<li><a href="http://www.newegg.com/Product/Product.aspx?Item=N82E16819117559&cm_re=i7-_-19-117-559-_-Product" rel="external">An Unlocked i7</a></li>
-					<li><a href="http://www.newegg.com/Product/Product.aspx?Item=N82E16819117560&cm_re=i7-_-19-117-560-_-Product" rel="external">This one is locked though</a></li>
-				</ul>
-			</div>
-		</article></li>
-	</ol>
+		</div>
+	</div>
 </section>
 <footer id="contentinfo" class="body"> 
 	<address id="about" class="vcard body">

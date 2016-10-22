@@ -11,14 +11,7 @@ var filters = {
 };
 
 var urls = [
-    {"amazon":"https://www.amazon.com/EVGA-GeForce-Dual-Link-Graphics-06G-P4-2790-KR/dp/B00BIUKH04", "newegg":"http://www.newegg.com/Product/Product.aspx?Item=N82E16814130897"},
-    {"amazon":"https://www.amazon.com/Sapphire-Radeon-backplate-Graphics-11260-07-20G/dp/B01J1M4BZ2", "newegg":"http://www.newegg.com/Product/Product.aspx?Item=N82E16814202224"},
-    {"amazon":"https://www.amazon.com/EVGA-GeForce-Display-Graphics-02G-P4-3757-KR/dp/B00J0ISHMQ", "newegg":"http://www.newegg.com/Product/Product.aspx?Item=N82E16814487028"},
-    {"amazon":"https://www.amazon.com/2133MHz-Non-ECC-Desktop-HX421C14FBK2-16/dp/B00TY6A1LY", "newegg":"http://www.newegg.com/Product/Product.aspx?Item=N82E16820104531"},
-    {"amazon":"https://www.amazon.com/Corsair-Vengeance-2400MHz-PC4-19200-Memory/dp/B00UVN2C8O", "newegg":"http://www.newegg.com/Product/Product.aspx?Item=N82E16820233982"},
-    {"amazon":"https://www.amazon.com/Crucial-Ballistix-PC3-12800-240-Pin-BLS2KIT8G3D1609DS1S00/dp/B006YG9EEW", "newegg":"http://www.newegg.com/Product/Product.aspx?Item=9SIA5752RR9050"},
-    {"amazon":"https://www.amazon.com/Intel-Unlocked-Skylake-Processor-BX80662I76700K/dp/B012M8LXQW", "newegg":"http://www.newegg.com/Product/Product.aspx?Item=N82E16819117559"},
-    {"amazon":"https://www.amazon.com/Intel-I7-6700-FC-LGA14C-Processor-BX80662I76700/dp/B0136JONG8", "newegg":"http://www.newegg.com/Product/Product.aspx?Item=N82E16819117560"}
+    {"amazon":"https://www.amazon.com/Intel-Unlocked-Skylake-Processor-BX80662I76700K/dp/B012M8LXQW", "newegg":"http://www.newegg.com/Product/Product.aspx?Item=N82E16855503074"},
 ];
 
 function product(brand, model, price, imageUrl, averageRating, reviews, specifications, id, amazonUrl, neweggUrl) {
@@ -148,6 +141,7 @@ function buildProductCard(product) {
 
     var container = document.createElement("div");
     container.className += "product-container";
+    addTooltip(container, "Right&nbsp;click&nbsp;to&nbsp;view/close&nbsp;options&nbsp;menu");
 
     var imgContainer = document.createElement("div");
     imgContainer.className = "product-image-container";
@@ -159,6 +153,12 @@ function buildProductCard(product) {
     productName.className = "product-name";
     productName.innerHTML = product.brand + " " + product.model + " ";
     
+    var favoriteIcon = document.createElement("i");
+    favoriteIcon.style.color = "red";
+    favoriteIcon.className = "fa ";
+    favoriteIcon.id = product.id + "Favorite";
+    productName.appendChild(favoriteIcon);
+
     var starAndPriceContainer = document.createElement("div");
     starAndPriceContainer.className = "product-rating-and-price-container";
     
@@ -181,6 +181,8 @@ function buildProductCard(product) {
     price.className = "product-price";
     price.innerHTML = "$"+product.price.toFixed(2);
 
+    var circularMenu = buildCircularMenu(products.indexOf(product));
+
     imgContainer.appendChild(image);
     container.appendChild(imgContainer);
     container.appendChild(productName);
@@ -188,7 +190,8 @@ function buildProductCard(product) {
     starAndPriceContainer.appendChild(price);
     container.appendChild(starAndPriceContainer);
     productCard.appendChild(container);
-        
+    productCard.appendChild(circularMenu);
+    
     productCard.oncontextmenu = (function() {
         var currentId = productCard.id;
         return function() {
@@ -205,6 +208,53 @@ function buildProductCard(product) {
     	
 }
 
+function buildCircularMenu(i) {
+	var circularMenu = document.createElement("div");
+	circularMenu.className = "circular-menu";        
+	
+	var circle = document.createElement("div");
+	circle.className = "circle";
+	circle.id = "product" + i + "Menu";
+	
+	var favorite = document.createElement("i");
+	favorite.className = "fa fa-heart-o fa-2x";
+	addTooltip(favorite, "Compare&nbsp;to&nbsp;favorites");
+	
+	var videos = document.createElement("i");
+	videos.className = "fa fa-film fa-2x";
+	addTooltip(videos, "View&nbsp;videos");
+	
+	var reviews = document.createElement("i");
+	reviews.className = "fa fa-star fa-2x";
+	addTooltip(reviews, "Read&nbsp;reviews");
+
+	var specifications  = document.createElement("i");
+	specifications.className = "fa fa-list-ul fa-2x";
+	addTooltip(specifications, "View&nbsp;specifications");
+	
+	var menuItems = [favorite, videos, reviews, specifications];
+	for (var j = 0, l = menuItems.length; j < l; j++)
+	{
+		menuItems[j].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/l)*j*Math.PI)).toFixed(4) + "%";
+		menuItems[j].style.top = (50 + 35*Math.sin(-0.5 * Math.PI - 2*(1/l)*j*Math.PI)).toFixed(4) + "%";        
+		menuItems[j].onclick = (function() {
+			var currentProduct = products[i];
+			var iconId = 3-j;
+			return function() { 
+				openModal(currentProduct, iconId);
+			}
+		})();
+	}
+	
+	circle.appendChild(favorite);
+	circle.appendChild(videos);
+	circle.appendChild(reviews);
+	circle.appendChild(specifications);
+	circularMenu.appendChild(circle);
+	
+	return circularMenu;
+}
+
 function addTooltip(element, tooltipText) {
 	var tooltipTextElement = document.createElement("span");
 	
@@ -213,6 +263,48 @@ function addTooltip(element, tooltipText) {
 	tooltipTextElement.innerHTML = tooltipText;
 	
 	element.appendChild(tooltipTextElement);
+}
+
+function openCircularMenu(menuId) {
+	if (currentMenuId == null)
+	{
+		currentMenuId = menuId;
+        document.getElementById(currentMenuId).classList.toggle('open');
+		menuOpen = true;
+	}
+    else 
+	{
+		if (currentMenuId == menuId)
+		{
+			document.getElementById(currentMenuId).classList.toggle('open');
+			menuOpen = !menuOpen;
+		}
+		else
+		{
+			if (menuOpen)
+			{
+				document.getElementById(currentMenuId).classList.toggle('open');
+				currentMenuId = menuId;
+				document.getElementById(currentMenuId).classList.toggle('open');
+			}
+			else
+			{
+				currentMenuId = menuId;
+				document.getElementById(currentMenuId).classList.toggle('open');
+				menuOpen = true;
+			}
+		}
+	}
+	
+    return false;
+}
+
+function closeCircularMenu() {
+	if ((menuOpen) && (currentMenuId != null))
+	{
+        document.getElementById(currentMenuId).classList.toggle('open');
+		menuOpen = false;
+	}
 }
 
 function openModal(currentProduct, menuItem) {
