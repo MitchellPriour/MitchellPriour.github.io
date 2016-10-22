@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var bsService = new BSAutoSwitch(['elkanacmmmdgbnhdjopfdeafchmhecbf', 'gdgmmfgjalcpnakohgcfflgccamjoipd ']);
 
 var currentMenuId;
@@ -224,3 +223,4 @@ function addTooltip(element, tooltipText) {
 	tooltipTextElement.innerHTML = tooltipText;
 	
 	element.appendChild(tooltipTextElement);
+}
