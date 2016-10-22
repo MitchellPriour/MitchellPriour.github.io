@@ -27,21 +27,17 @@
 	Bootstrap.min.css is a neccesary evil - there's some particular bit of css in there that lets MICE render properly. I'm trying to hunt it
 	down so that bootstrap is not a dependency, but I haven't succeeded yet
 	-->
-
 	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/RendererBase.js"></script>
 	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/RenderingTask.js"></script>
 	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/VanillaMICE.js"></script>
 
     <link href="../BigSemanticsJavaScript/renderers/styles/metadataRenderer.css" rel="stylesheet" type="text/css">
-
 	<!--Webpage-specific javascript and CSS includes-->
 <!-- 	<script type="text/javascript" src="./data.js"></script>
     <link href="./demo.css" rel="stylesheet" type="text/css">
  -->    <!-- I like the roboto font because it makes me feel like a real developer-->
 	<!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500,400italic,500italic,300italic,300,100italic,100' rel='stylesheet' type='text/css'> -->
-
     <link rel="stylesheet" type="text/css" href="style.css"></link>
-    <link rel="stylesheet" type="text/css" href="functionalPrototype.css"></link>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <script type="text/javascript" src="http://www.yvoschaap.com/ytpage/ytembed.js"></script>
     <script type="text/javascript" src="javastuff.js"></script>
@@ -72,61 +68,7 @@
 </article></aside>
 <section id="content" class="body"><div id = "main" class="main">
 		<div id = "search-results-container" class="search-results-container">
-			<div id="products-container" oncontextmenu="return false;" class="w3-row products-container">
-				
-			</div>
-		</div>
-		<div id="modalWindow" class="w3-modal w3-padding">
-			<div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width:1050px">
-				<header class="w3-white w3-padding modal-header">
-                    <div class="w3-padding" style="float:center">
-                        <h2 class="w3-half" style="text:left">
-                            <img id="modalImage"/>
-                        </h2>
-                        <div class:"w3-half" style="float:left;text-align:left">
-                            <h2 id="modalProductName"></h2>
-                            <div>
-                                <div style="float:left">
-                                    <h4 id="modalPrice"></h4>
-                                    <div class="w3-xlarge" style="float:left;color:rgb(255, 153, 0)">
-                                        <i id="modalStar1"></i>
-                                        <i id="modalStar2"></i>
-                                        <i id="modalStar3"></i>
-                                        <i id="modalStar4"></i>
-                                        <i id="modalStar5"></i>
-                                    </div>
-                                </div>
-								<div class="w3-jumbo">
-									<i id="modalFavorite" style="float:right;color:red;"></i>
-								</div>
-                            </div>
-                        </div>
-                    </div>
-				</header>
-				<div id="specsContent" class="w3-container tab-content modal-specs-tab-content">
-					<div class="w3-container" style="text-align:left;max-height:350px;overflow:auto">
-						<table id="modalSecificationsTable" class="w3-table w3-margin">
-
-						</table>
-					</div>
-				</div>
-                
-				<div id="reviewsContent" class="w3-container tab-content modal-reviews-tab-content" style="text-align:left;max-height:350px;overflow:auto">
-				
-                </div>
-
-				<div id="videosContent" class="w3-container tab-content modal-videos-tab-content">
-					<div id="modalVideosContainer" class="w3-container" style="max-height:350px;overflow:auto">
-                        <div id="ytThumbs"></div>
-					</div>
-				</div>
-				
-				<div id="favoritesContent" class="w3-container tab-content modal-favorites-tab-content">
-					<div class="w3-container" style="text-align:left;max-height:350px;overflow:auto">
-						<table id="modalFavoritesTable" class="w3-table w3-margin">
-						</table>
-					</div>
-				</div>
+			<div id="products-container" oncontextmenu="return false;" class="w3-row products-container">				
 			</div>
 		</div>
 	</div>
