@@ -217,7 +217,7 @@ function buildProductCard(product) {
     productsContainer.appendChild(productCard);
     	
 }
-
+*/
 function addTooltip(element, tooltipText) {
 	var tooltipTextElement = document.createElement("span");
 	
@@ -226,4 +226,4 @@ function addTooltip(element, tooltipText) {
 	tooltipTextElement.innerHTML = tooltipText;
 	
 	element.appendChild(tooltipTextElement);
-}*/
+}
