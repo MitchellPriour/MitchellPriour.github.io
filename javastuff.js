@@ -148,7 +148,7 @@ function newegg(err, metadataAndMetametaData) {
     }
 
 }
-/*
+
 function buildProductCard(product) {
     var productsContainer = document.getElementById("products-container");
     
@@ -214,7 +214,7 @@ function buildProductCard(product) {
     productsContainer.appendChild(productCard);
     	
 }
-*/
+
 function addTooltip(element, tooltipText) {
 	var tooltipTextElement = document.createElement("span");
 	
