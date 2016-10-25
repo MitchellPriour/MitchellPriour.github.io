@@ -38,7 +38,7 @@ function product(brand, model, price, imageUrl, averageRating, reviews, specific
 	this.imageUrl = imageUrl;
 	this.averageRating = averageRating;
 	this.reviews = reviews;
-	//this.favorite = false;
+	this.favorite = false;
 	this.specifications = specifications;
     this.id = id;
 	this.showOnPage = true;
@@ -149,9 +149,6 @@ function newegg(err, metadataAndMetametaData) {
 
 }
 /*
-document.getElementById( "imageUrl" ).onclick = function1() {
-    
-};
 function buildProductCard(product) {
     var productsContainer = document.getElementById("products-container");
     
