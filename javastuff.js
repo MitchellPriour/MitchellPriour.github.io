@@ -149,6 +149,9 @@ function newegg(err, metadataAndMetametaData) {
 
 }
 
+document.getElementById( "imageUrl" ).onclick = function1() {
+    
+};
 /*function buildProductCard(product) {
     var productsContainer = document.getElementById("products-container");
     
