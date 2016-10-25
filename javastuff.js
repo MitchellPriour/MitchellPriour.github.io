@@ -148,11 +148,11 @@ function newegg(err, metadataAndMetametaData) {
     }
 
 }
-
+/*
 document.getElementById( "imageUrl" ).onclick = function1() {
     
 };
-/*function buildProductCard(product) {
+function buildProductCard(product) {
     var productsContainer = document.getElementById("products-container");
     
     var productCard = document.createElement("div");
@@ -217,7 +217,7 @@ document.getElementById( "imageUrl" ).onclick = function1() {
     productsContainer.appendChild(productCard);
     	
 }
-*/
+
 function addTooltip(element, tooltipText) {
 	var tooltipTextElement = document.createElement("span");
 	
@@ -226,4 +226,4 @@ function addTooltip(element, tooltipText) {
 	tooltipTextElement.innerHTML = tooltipText;
 	
 	element.appendChild(tooltipTextElement);
-}
+}*/
