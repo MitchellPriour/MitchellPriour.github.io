@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	
+	<!-- bsjsCore Files. You must include them in this order so as to use any BigSemantics porject -->
+	<!-- Readyable is a class used to handle the asynchronous load time of the BS project
+		BSAutoSwitch is an interface to BigSemantics that can switch between using the lab's hosted service for metadata
+			and using a browser-installed extension. BSService and BSSExtension are implementations -->
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/Readyable.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/BSAutoSwitch.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/BSService.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/BSExtension.js"></script>
+	<!-- BSUtils, Downloader, ParsedURL, and simplBase are helper classes. Include them, but don't really worry about them-->
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/BSUtils.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/ParsedURL.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/Downloader.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/simpl/simplBase.js"></script>
+	<!-- MetadataTask is the preffered interface for using BSJS when you only want data and not to render it via our software
+		RepoMan loads a Meta-metadata repository. Avoid doing anything with it directly; it's messy-->
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/MetadataTask.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/RepoMan.js"></script>
+	<!-- Various helped classes for renderers. MetadataViewModel takes our raw data and puts it in a nice format for the
+		 various metadata renderers (of which only one is shown here). InterfaceStyle is a dictionary that lets us style
+		 elements differently in different renderers. -->
+	<script type="text/javascript" src="BigSemanticsJavaScript/bsjsCore/MetadataViewModel.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/interfaceStyle.js"></script>
+	<!-- The RenderingFiles!! RendererBase is your entry point for rendering via our software. RenderingTask handles some various data processing and can, on a good day, select an ideal renderer for metadata if one isn't specified. Vanilla Mice, mice, baby does *most* of the rendering work. The initial plan was for VanillaMICE to extend RendererBase, but in practice they've began to diverge.
+	Bootstrap.min.css is a neccesary evil - there's some particular bit of css in there that lets MICE render properly. I'm trying to hunt it
+	down so that bootstrap is not a dependency, but I haven't succeeded yet
+	-->
+	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/RendererBase.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/RenderingTask.js"></script>
+	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/VanillaMICE.js"></script>
+
+ 	<link href="BigSemanticsJavaScript/renderers/styles/metadataRenderer.css" rel="stylesheet" type="text/css">
+	<!--Webpage-specific javascript and CSS includes-->
+<!-- 	<script type="text/javascript" src="./data.js"></script>
+    <link href="./demo.css" rel="stylesheet" type="text/css">
+ -->    <!-- I like the roboto font because it makes me feel like a real developer-->
+	<!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500,400italic,500italic,300italic,300,100italic,100' rel='stylesheet' type='text/css'> -->
+    <link rel="stylesheet" type="text/css" href="productstyle.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="http://www.yvoschaap.com/ytpage/ytembed.js"></script>
+    <script type="text/javascript" src="javastuff.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<style>
+</style>
+<script type="text/javascript">
+
+var productInfo = {};
+var amazonSet = false;
+var newEggSet = false;
+function populateAmazon(err, metadataAndMetametaData)
+{
+	console.log("amazon");
+	productInfo.fromAmazon = BSUtils.unwrap(metadataAndMetametaData.metadata);	
+	amazonSet = true;
+	if(newEggSet)
+	{
+		viewProduct();
+	}
+}
+function populateNewEgg(err, metadataAndMetametaData)
+{
+	console.log("NE");
+	productInfo.fromNewEgg = BSUtils.unwrap(metadataAndMetametaData.metadata);
+	newEggSet = true;
+	if(amazonSet)
+	{
+		viewProduct();
+	}
+}
+
+function viewProduct()
+{
+	console.log(productInfo);
+	$("#pImg").attr('src', productInfo.fromAmazon.main_images[0].location);
+	$("#productName").html(productInfo.fromAmazon.title);
+	$("#amazonPrice").html(productInfo.fromAmazon.price);
+	$("#amazonRating").html(productInfo.fromAmazon.overall_rating);
+	$("#amazonReviews").html(productInfo.fromAmazon.reviews);
+	$.each(productInfo.fromNewEgg.specifications_table, function(index, value){
+		$.each(value.specifications, function(index2, value2){
+			console.log(value2);
+			$("#spcesTable").append($("<p class='col-md-12'><span class='col-md-4'>" + value2.name + "</span><span class='col-md-7'>" + value2.value + "</span></p>")
+					);
+			
+		});
+	});
+	/*$.each(productInfo.fromAmazon.reviews, function)*/
+
+}
+
+$(document).ready(function(){
+	console.log(getUrlParameter("index"));
+	bsService.loadMetadata(urls[Number(getUrlParameter("index"))]["amazon"], {}, populateAmazon);
+	bsService.loadMetadata(urls[Number(getUrlParameter("index"))]["newegg"], {}, populateNewEgg);
+	
+	
+});
+</script>
+<body>
+<header id="banner" class="body">
+	<img src="HCC new logo-09.png" alt="TSSE" width="135" height="52">	
+</header>
+<div id="productContainer">
+
+	
+	<div id="productDescription" class="col-md-12">
+		<div id="productImage" class="col-md-4" style="border: 1px solid gray;padding: 20px;margin-top: 100px;margin-left: 200px;">
+			<img id="pImg" alt="" src="" style="width: 300px;height: 300px;">
+		</div>
+		<div id="productSpecs" class="col-md-6" style="margin-left: 0px;overflow: auto;">
+			<div class="col-md-12" style="    padding-bottom: 30px;border-bottom: grey 1px solid;"> <!-- Row1 -->
+				<h3 id="productName"></h3>
+				<div class="col-md-6"><h4>Amazon: <span id="amazonPrice" ></span></h4></div>
+				<div class="col-md-6"><h5>Rating: <span id="amazonRating" ></span></h5></div>	
+			</div>
+			
+			<!-- Row 2 - Specs -->
+			<div id="specsContainer" class="col-md-12" style="max-height: 300px;overflow: auto;">
+				<h3>Specifications</h3>
+				<div id="spcesTable"></div>
+			</div>	
+		</div>
+	</div>
+</div>
+<div class="reviews">
+	<nav id="reviews-box">
+		<input type="checkbox" id="checkbox1" name="reviewer" value="CNET" />CNET <br />
+		<input type="checkbox" id="checkbox2" name="reviewer" value="Digit" />Digit <br />
+		<input type="checkbox" id="checkbox3" name="reviewer" value="Softonic" />Softonic <br />
+		<input type="checkbox" id="checkbox4" name="reviewer" value="Review+" />Review+ <br />
+		<input type="checkbox" id="checkbox5" name="reviewer" value="Pro Reviews" />Pro Reviews <br />
+	</nav>
+	<section id="reviews">
+		<h4>Reviews: <span id="amazonReviews" ></span></h4>
+	<body>
+		<div id="autoCNET" class="autoCNET">
+			<h4>MARK JOHNSON | CNET INC</h4>
+			<h6>This product is very reasonable for its price range.  I've recently been able to acquire one, and so far I'm satisfied
+			with the performance.  If you're looking to upgrade over an older model on a budget, this is certainly an option.</h6>
+			<h4>DAN BROWN | CNET INC</h4>
+			<h6>Such a cool product!  I've been waiting eagerly for this to come in so I could get a chance to use it.  
+			So far I have had no problems with this product yet, and I'm hoping it stays this way for a long time to come.</h6>
+		</div>
+	</body>
+	<body>
+		<div id="autoDigit" class="autoDigit">
+			<h4>ROBERT KING | DIGIT INC</h4>
+			<h6>I've been very skeptical of this for a while.  The history of this product has not been promising, however after
+			being able to test the performance of it, I'm convinced that this will be the one to shatter the bad reputation 
+			this product line has earned over the past few years.</h6>
+		</div>
+	</body>
+	<body>
+		<div id="autoSoftonic" class="autoSoftonic">
+			<h4>ERIC CALDWELL | SOFTONIC</h4>
+			<h6>I'm disappointed with this product.  There's no debate in arguing the performance, however with similar alternatives
+			listed at lower prices with reliable history, I have a hard time justifying purchasing this product.  It's not that it's 
+			bad, but you can do better for this price.</h6>
+		</div>
+	</body>
+	<body>
+		<div id="autoReview" class="autoReview">
+			<h4>JOYCE BYERS | REVIEW+</h4>
+			<h6>Very pleased with this product!  For first time computer builders or those looking to upgrade their rig, this is the product for you.</h6>
+		</div>
+	</body>
+	<body>
+		<div id="autoProReviews" class="autoProReviews">
+			<h4>ROBIN CONNERS | PRO REVIEWS</h4>
+			<h6>I feel like for this price, we should've gotten more out of the product.  As someone who tries to maximize the benefit for the price,
+			I'm reluctant to suggest this product to anyone else.  If this were a little bit less expensive, it would have my approval.  Be wary of price drops
+			in the future.</h6>
+		</div>
+	</body>
+	</section>
+</div>
+</body>
+</html>

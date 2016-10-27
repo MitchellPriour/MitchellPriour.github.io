@@ -64,26 +64,48 @@ div.content {
 	margin-left: 50%;
 	
 }
+#autoCNET{
+    display:none;
+}
+#autoDigit{
+    display:none;
+}
+#autoSoftonic{
+    display:none;
+}
+#autoReview{
+    display:none;
+}
+#autoProReviews{
+    display:none;
+}
+#reviewText{
+
+}
 div.reviews {
 	width: 100%;
 	min-height: 500px;
    	margin-top: 500px;
    	margin-bottom: 100px;
    	margin-left: 100px;
+   	max-width: 1710px;
    	border: 2px solid gray;
 }
 nav {
 	float: left;
 	max-width: 160px;
+	height: 496px;
 	margin: 0;
 	margin-bottom: 10px;
+	border-right: 1px solid gray;
 	padding: 1em;
 }
 #reviews {
 	margin-left: 170px;
-	border-left: 1px solid gray;
 	padding: 1em;
 	overflow: hidden;
+	max-width: 600px; 
+	word-wrap:break-word;
 }
 #contentinfo {
    position:fixed;

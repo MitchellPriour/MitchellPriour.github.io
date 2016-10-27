@@ -31,7 +31,7 @@
 	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/RenderingTask.js"></script>
 	<script type="text/javascript" src="BigSemanticsJavaScript/renderers/VanillaMICE.js"></script>
 
-    <link href="../BigSemanticsJavaScript/renderers/styles/metadataRenderer.css" rel="stylesheet" type="text/css">
+ 	<link href="BigSemanticsJavaScript/renderers/styles/metadataRenderer.css" rel="stylesheet" type="text/css">
 	<!--Webpage-specific javascript and CSS includes-->
 <!-- 	<script type="text/javascript" src="./data.js"></script>
     <link href="./demo.css" rel="stylesheet" type="text/css">
@@ -43,6 +43,12 @@
     <script type="text/javascript" src="javastuff.js"></script>
 <style>
 </style>
+<script type="text/javascript">
+window.onload = function() { 
+buildProducts();
+	/* buildProductCards(); */
+};
+</script>
 </head>
 <header id="banner" class="body">
 	<img src="HCC new logo-09.png" alt="TSSE" width="135" height="52">
@@ -60,7 +66,7 @@
 </article></aside>
 <section id="content" class="body"><div id = "main" class="main">
 		<div id = "search-results-container" class="search-results-container">
-			<div id="products-container" oncontextmenu="return false;" class="w3-row products-container">				
+			<div id="products-container" class="w3-row products-container">				
 			</div>
 		</div>
 	</div>
